@@ -4,141 +4,27 @@ import viteLogo from '/vite.svg'
 
 import './App.css'
 
-import Boton from './components/boton'
-
+import Display from './components/Display';
+import Teclado from './components/Teclado';
+import Memoria from './components/Memoria';
 
 function App() {
+  const [valorDisplay, setValorDisplay] = useState("");
+  const [memoria, setMemoria] = useState("");
 
-  function manejarclickn(e) {
-    const Boton = e.target
-    console.log(Boton.textContent)
-    let display=document.getElementById("display")
-    display.value = display.value + Boton.textContent
-
-  }
-
-  const calcular =() => {
-    let display=document.getElementById("display")
-    display.value=eval(display.value)
-  }
-
-  const clear = () =>{
-    let display=document.getElementById("display")
-    display.value=""
-  }
-
-  return(
-    <div className='contenedor'>
-      <div className='pad'>
-        
-        <input className='display' type="text" id="display" />
-
-        <Boton 
-        texto="1" 
-        operacion={manejarclickn}
-        tipo="normal"
+  return (
+    <div className="contenedor">
+      <div className="pad">
+        <Display valor={valorDisplay} />
+        <Teclado 
+          valorDisplay={valorDisplay} 
+          setValorDisplay={setValorDisplay} 
+          setMemoria={setMemoria}
         />
-
-        <Boton 
-        texto="2" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="3" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="+" 
-        operacion={manejarclickn}
-        tipo="operacion"
-        />
-
-       <Boton 
-        texto="4" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="5" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="6" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="-" 
-        operacion={manejarclickn}
-        tipo="operacion"
-        />
-
-        <Boton 
-        texto="7" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="8" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="9" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="*" 
-        operacion={manejarclickn}
-        tipo="operacion"
-        />
-
-        <Boton 
-        texto="=" 
-        operacion={calcular}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="0" 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="." 
-        operacion={manejarclickn}
-        tipo="normal"
-        />
-
-        <Boton 
-        texto="/" 
-        operacion={manejarclickn}
-        tipo="operacion"
-        />
-
-        <Boton 
-        texto="Clear" 
-        operacion={clear}
-        tipo="clear"
-        />
-
+        <Memoria memoria={memoria} setValorDisplay={setValorDisplay} />
       </div>
     </div>
-  )
-  
+  );
 }
 
-export default App
+export default App;
